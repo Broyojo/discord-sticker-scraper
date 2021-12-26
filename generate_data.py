@@ -24,4 +24,4 @@ with open("data.txt", "w") as d:
                     sticker = message['sticker_items'][0]['id']
                     if sticker != "816086581509095424":  # filter out random person who used custom sticker
                         d.write(
-                            f"{message['author']['discriminator']} {message['message_reference']['message_id']} {sticker_dict[sticker]}\n")
+                            f"{message['author']['username']} {message['author']['discriminator']} {message['message_reference']['message_id']} {sticker_dict[sticker]}\n")

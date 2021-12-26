@@ -53,7 +53,7 @@ plt.xlabel('Epoch')
 plt.legend(['Train', 'Test'], loc='upper left')
 plt.show()
 
-pred = model.predict([[4/10, 5/10, 5/10, 7/10]])
+pred = model.predict([[0/10, 2/10, 0/10, 1/10]])
 cats = ohe.categories_
 
 for k, v in enumerate(pred[0]):
