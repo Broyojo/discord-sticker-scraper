@@ -14,8 +14,8 @@ y = []
 with open("data.txt", "r") as f:
     for line in f.readlines():
         tag, _, sticker = line.split()
-        X.append([int(tag[0]) / 10, int(tag[1]) / 10,
-                 int(tag[2]) / 10, int(tag[3]) / 10])
+
+        X.append([int(i) / 10 for i in tag])
         y.append([sticker])
 
 # sc = StandardScaler()
@@ -33,9 +33,10 @@ print(y)
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.1)
 
 model = Sequential()
-model.add(Dense(4, input_dim=4, activation="relu"))
-model.add(Dense(16, activation="relu"))
-model.add(Dense(8, activation="relu"))
+model.add(Dense(len(X[0]), input_dim=len(X[0]), activation="relu"))
+model.add(Dense(64, activation="relu"))
+model.add(Dense(64, activation="relu"))
+model.add(Dense(64, activation="relu"))
 model.add(Dense(len(y[0]), activation="softmax"))
 
 model.compile(loss='categorical_crossentropy',
@@ -52,7 +53,7 @@ plt.xlabel('Epoch')
 plt.legend(['Train', 'Test'], loc='upper left')
 plt.show()
 
-pred = model.predict([[1/10, 0/10, 1/10, 1/10]])
+pred = model.predict([[4/10, 5/10, 5/10, 7/10]])
 cats = ohe.categories_
 
 for k, v in enumerate(pred[0]):
