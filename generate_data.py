@@ -18,18 +18,13 @@ with open("data.txt", "w") as d:
             # pp = pprint.PrettyPrinter(indent=4, compact=True)
             # pp.pprint(data[1])
             # quit()
-
-            join_replies = []
-
             for message in data:
                 if 'sticker_items' in message:
                     if 'message_reference' in message:
                         for ref in data:
                             if ref['id'] == message['message_reference']['message_id']:
-                                join_replies.append(message)
-
-            for message in join_replies:
-                sticker = message['sticker_items'][0]['id']
-                if sticker != "816086581509095424":  # filter out random person who used custom sticker
-                    d.write(
-                        f"{message['author']['username']},{message['author']['id']},{message['message_reference']['message_id']},{sticker_dict[sticker]}\n")
+                                if ref['type'] == 7:
+                                    sticker = message['sticker_items'][0]['id']
+                                    if sticker != "816086581509095424":  # filter out random person who used custom sticker
+                                        d.write(
+                                            f"{message['author']['username']},{message['author']['id']},{message['message_reference']['message_id']},{sticker_dict[sticker]}\n")
