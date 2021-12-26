@@ -5,7 +5,7 @@ import logging
 class MyClient(discord.Client):
     async def on_ready(self):
         print(f'Logged in as {self.user}')
-        channel_id = 903390307494805554
+        channel_id = 401255675264761868
         channel = self.get_channel(channel_id)
         with open(f"{channel.name}.txt", "w") as f:
             async for message in channel.history(limit=2500):
