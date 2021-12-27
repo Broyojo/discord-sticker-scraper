@@ -7,6 +7,7 @@ import pprint
 # change these to your liking
 TOKEN = 'OTI0NDQyMTA2MDgzMzExNjE2.Yce5sw.Sgtz0bhGW4qmGrmm1D7cRnNmKVI'
 MESSAGE_LIMIT = 100000
+OUTPUT_NAME = 'data.txt'
 CHANNELS = [
     903390307494805554,
     401255675264761868,
@@ -70,7 +71,7 @@ def main():
     client = MyClient()
     client.run(TOKEN, bot=False)
 
-    generate_data('data.txt')
+    generate_data(OUTPUT_NAME)
 
 
 if __name__ == '__main__':
