@@ -1,11 +1,8 @@
 import matplotlib.pyplot as plt
-from sklearn.metrics import accuracy_score
+import numpy as np
 from keras.layers import Dense
 from keras.models import Sequential
-import keras
 from sklearn.model_selection import train_test_split
-import numpy as np
-from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import OneHotEncoder
 
 X = []
@@ -39,21 +36,21 @@ model.add(Dense(64, activation="relu"))
 model.add(Dense(64, activation="relu"))
 model.add(Dense(len(y[0]), activation="softmax"))
 
-model.compile(loss='categorical_crossentropy',
-              optimizer='adam', metrics=['accuracy'])
+model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"])
 
-history = model.fit(X_train, y_train, validation_data=(
-    X_test, y_test), epochs=100, batch_size=64)
+history = model.fit(
+    X_train, y_train, validation_data=(X_test, y_test), epochs=100, batch_size=64
+)
 
-plt.plot(history.history['accuracy'])
-plt.plot(history.history['val_accuracy'])
-plt.title('Model accuracy')
-plt.ylabel('Accuracy')
-plt.xlabel('Epoch')
-plt.legend(['Train', 'Test'], loc='upper left')
+plt.plot(history.history["accuracy"])
+plt.plot(history.history["val_accuracy"])
+plt.title("Model accuracy")
+plt.ylabel("Accuracy")
+plt.xlabel("Epoch")
+plt.legend(["Train", "Test"], loc="upper left")
 plt.show()
 
-pred = model.predict([[0/10, 2/10, 0/10, 1/10]])
+pred = model.predict([[0 / 10, 2 / 10, 0 / 10, 1 / 10]])
 cats = ohe.categories_
 
 for k, v in enumerate(pred[0]):

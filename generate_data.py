@@ -1,6 +1,5 @@
-import os
 import ast
-import pprint
+import os
 
 sticker_dict = {
     "749054660769218631": "wumpus",
@@ -19,12 +18,15 @@ with open("data.txt", "w") as d:
             # pp.pprint(data[1])
             # quit()
             for message in data:
-                if 'sticker_items' in message:
-                    if 'message_reference' in message:
+                if "sticker_items" in message:
+                    if "message_reference" in message:
                         for ref in data:
-                            if ref['id'] == message['message_reference']['message_id']:
-                                if ref['type'] == 7:
-                                    sticker = message['sticker_items'][0]['id']
-                                    if sticker != "816086581509095424":  # filter out random person who used custom sticker
+                            if ref["id"] == message["message_reference"]["message_id"]:
+                                if ref["type"] == 7:
+                                    sticker = message["sticker_items"][0]["id"]
+                                    if (
+                                        sticker != "816086581509095424"
+                                    ):  # filter out random person who used custom sticker
                                         d.write(
-                                            f"{message['author']['username']},{message['author']['id']},{message['message_reference']['message_id']},{sticker_dict[sticker]}\n")
+                                            f"{message['author']['username']},{message['author']['id']},{message['message_reference']['message_id']},{sticker_dict[sticker]}\n"
+                                        )
